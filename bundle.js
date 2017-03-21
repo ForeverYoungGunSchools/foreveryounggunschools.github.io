@@ -29121,15 +29121,15 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(314);
+	var _Home = __webpack_require__(315);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _About = __webpack_require__(318);
+	var _About = __webpack_require__(319);
 
 	var _About2 = _interopRequireDefault(_About);
 
-	var _Classes = __webpack_require__(322);
+	var _Classes = __webpack_require__(324);
 
 	var _Classes2 = _interopRequireDefault(_Classes);
 
@@ -34210,7 +34210,7 @@
 	function App(props) {
 		return _react2.default.createElement(
 			'div',
-			{ className: 'main-container' },
+			null,
 			props.children
 		);
 	}
@@ -34231,7 +34231,7 @@
 	var content = __webpack_require__(311);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(313)(content, {});
+	var update = __webpack_require__(314)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34256,7 +34256,7 @@
 
 
 	// module
-	exports.push([module.id, "/*****  Reset Browser Default Settings  *****/\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n  box-sizing: border-box;\n}\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after, q:before, q:after {\n  content: '';\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n", ""]);
+	exports.push([module.id, "/*****  Reset Browser Default Settings  *****/\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n  box-sizing: border-box;\n}\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after, q:before, q:after {\n  content: '';\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n.main-container {\n  background: url(" + __webpack_require__(313) + ");\n  width: 100vw;\n  height: 100vh;\n  background-size: 100vw 100vh;\n  background-repeat: no-repeat;\n  position: fixed;\n  z-index: -2;\n}\n\n.white-container {\n  background-color: white;\n  width: 70%;\n  min-height: 100vh;\n  height: 100%;\n  margin-left: 15%;\n  position: fixed;\n  z-index: -1;\n}", ""]);
 
 	// exports
 
@@ -34319,6 +34319,12 @@
 
 /***/ },
 /* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "9e06637aa9f42198afd805da8a038a9e.png";
+
+/***/ },
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -34570,7 +34576,7 @@
 
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34587,7 +34593,7 @@
 
 	var _reactRouter = __webpack_require__(254);
 
-	__webpack_require__(315);
+	__webpack_require__(316);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34596,6 +34602,8 @@
 		return _react2.default.createElement(
 			'div',
 			null,
+			_react2.default.createElement('div', { className: 'main-container' }),
+			_react2.default.createElement('div', { className: 'white-container' }),
 			_react2.default.createElement(
 				'div',
 				{ className: 'nav' },
@@ -34694,16 +34702,16 @@
 	exports.default = Home;
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(316);
+	var content = __webpack_require__(317);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(313)(content, {});
+	var update = __webpack_require__(314)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34720,7 +34728,7 @@
 	}
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(312)();
@@ -34728,19 +34736,19 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(317) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 2vw;\n\twidth: 50vw;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 1.5vw;\n}\n\n.title {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin-bottom: 50px;\n}\n\n.title h1 {\n\tfont-size: 5vw;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 2.5vw;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 2.3vw;\n}\n\n.home-info h5 {\n\tfont-size: 2vw;\n}\n\n.home-info h6 {\n\tfont-size: 1.8vw;\n}", ""]);
+	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(318) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 2vw;\n\twidth: 50vw;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 1.5vw;\n}\n\n.title {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin-bottom: 50px;\n}\n\n.title h1 {\n\tfont-size: 5vw;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 2.5vw;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 2.3vw;\n}\n\n.home-info h5 {\n\tfont-size: 2vw;\n}\n\n.home-info h6 {\n\tfont-size: 1.8vw;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "f32840346363eac825463e08062cc1da.png";
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34757,7 +34765,7 @@
 
 	var _reactRouter = __webpack_require__(254);
 
-	__webpack_require__(319);
+	__webpack_require__(320);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34766,6 +34774,8 @@
 		return _react2.default.createElement(
 			'div',
 			null,
+			_react2.default.createElement('div', { className: 'main-container' }),
+			_react2.default.createElement('div', { className: 'white-container' }),
 			_react2.default.createElement(
 				'div',
 				{ className: 'nav' },
@@ -34799,6 +34809,16 @@
 							'Classes'
 						)
 					)
+				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'me' },
+				_react2.default.createElement('div', { className: 'my-pic' }),
+				_react2.default.createElement(
+					'p',
+					null,
+					'My name is Harold Young.  I was born and raised in Colorado.  I am retired law enforcement with 27 years of service, 10 of which were in S.W.A.T.  I also am retired military with the U.S. Army, Utah National Guard, I served 24 years, 21 of which were with Special Forces.  I m married with 6 kids and 24 grandkids.'
 				)
 			),
 			_react2.default.createElement(
@@ -34850,16 +34870,16 @@
 	exports.default = About;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(320);
+	var content = __webpack_require__(321);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(313)(content, {});
+	var update = __webpack_require__(314)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34876,7 +34896,7 @@
 	}
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(312)();
@@ -34884,19 +34904,25 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.women {\n\twidth: 64%;\n\tmargin: 30px auto 50px auto;\n}\n\n.woman-pic {\n\tbackground: url(" + __webpack_require__(321) + ");\n\tbackground-size: cover;\n\theight: 20vw;\n\twidth: 10vw;\n\tfloat: left;\n\tmargin-right: 30px;\n}\n\n.women p, .men p {\n\tfont-size: 1.8vw;\n\tline-height: 1.2;\n\tmargin-bottom: 10px;\n}\n\n.men {\n\twidth: 64%;\n\tmargin: 0 auto 50px auto;\n}", ""]);
+	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.women, .me {\n\twidth: 64%;\n\tmargin: 30px auto 50px auto;\n}\n\n.my-pic {\n\tbackground: url(" + __webpack_require__(322) + ");\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\theight: 17vw;\n\twidth: 23vw;\n\tmargin: 20px auto;\n}\n\n.woman-pic {\n\tbackground: url(" + __webpack_require__(323) + ");\n\tbackground-size: cover;\n\theight: 20vw;\n\twidth: 10vw;\n\tfloat: left;\n\tmargin-right: 30px;\n}\n\n.women p, .men p, .me p {\n\tfont-size: 1.8vw;\n\tline-height: 1.2;\n\tmargin-bottom: 10px;\n}\n\n.men {\n\twidth: 64%;\n\tmargin: 0 auto 50px auto;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 321 */
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "335b566bf21f4210c473dda1de7584ee.jpg";
+
+/***/ },
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "384628a3470dbf71e9201926d65e0417.png";
 
 /***/ },
-/* 322 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34913,7 +34939,7 @@
 
 	var _reactRouter = __webpack_require__(254);
 
-	__webpack_require__(323);
+	__webpack_require__(325);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34922,6 +34948,8 @@
 		return _react2.default.createElement(
 			'div',
 			null,
+			_react2.default.createElement('div', { className: 'main-container' }),
+			_react2.default.createElement('div', { className: 'white-container' }),
 			_react2.default.createElement(
 				'div',
 				{ className: 'nav' },
@@ -35106,16 +35134,16 @@
 	exports.default = Classes;
 
 /***/ },
-/* 323 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(324);
+	var content = __webpack_require__(326);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(313)(content, {});
+	var update = __webpack_require__(314)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -35132,7 +35160,7 @@
 	}
 
 /***/ },
-/* 324 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(312)();
