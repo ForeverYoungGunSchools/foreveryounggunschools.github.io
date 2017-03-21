@@ -34818,7 +34818,7 @@
 				_react2.default.createElement(
 					'p',
 					null,
-					'My name is Harold Young.  I was born and raised in Colorado.  I am retired law enforcement with 27 years of service, 10 of which were in S.W.A.T.  I also am retired military with the U.S. Army, Utah National Guard, I served 24 years, 21 of which were with Special Forces.  I m married with 6 kids and 24 grandkids.'
+					'My name is Harold Young.  I was born and raised in Colorado.  I am retired law enforcement with 27 years of service, 10 of which were in S.W.A.T.  I also am retired military with the U.S. Army, Utah National Guard. I served 24 years, 21 of which were with Special Forces.  I\'m married with 6 kids and 24 grandkids.'
 				)
 			),
 			_react2.default.createElement(
