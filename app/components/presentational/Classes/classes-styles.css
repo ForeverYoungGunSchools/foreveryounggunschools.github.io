@@ -1,0 +1,50 @@
+.nav {
+	width: 100vw;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 1.3vw;
+}
+
+.nav ul {
+	display: inline-flex;
+	margin: 30px 0 20px 0;
+	justify-content: space-around;
+	width: 64%;
+}
+
+.nav li {
+	cursor: pointer;
+}
+
+.nav a {
+	color: #000;
+	text-decoration: none;
+}
+
+.classes {
+	width: 64%;
+	margin: 30px auto;
+	font-size: 1.8vw;
+	line-height: 1.2;
+}
+
+.classes div {
+	width: 100%;
+}
+
+.single-indent {
+	margin-left: 3vw;
+}
+
+.double-indent {
+	margin-left: 6vw;
+}
+
+.right {
+	float: right;
+	margin-right: 3vw;
+}
+
+.class-info, .margin {
+	margin-top: 30px;
+}

@@ -1,0 +1,56 @@
+.nav {
+	width: 100vw;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 1.3vw;
+}
+
+.nav ul {
+	display: inline-flex;
+	margin: 30px 0 20px 0;
+	justify-content: space-around;
+	width: 64%;
+}
+
+.nav li {
+	cursor: pointer;
+}
+
+.nav a {
+	color: #000;
+	text-decoration: none;
+}
+
+.women, .me {
+	width: 64%;
+	margin: 30px auto 50px auto;
+}
+
+.my-pic {
+	background: url("../../../img/harold.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 17vw;
+	width: 23vw;
+	margin: 20px auto;
+}
+
+.woman-pic {
+	background: url("../../../img/woman.png");
+	background-size: cover;
+	height: 20vw;
+	width: 10vw;
+	float: left;
+	margin-right: 30px;
+}
+
+.women p, .men p, .me p {
+	font-size: 1.8vw;
+	line-height: 1.2;
+	margin-bottom: 10px;
+}
+
+.men {
+	width: 64%;
+	margin: 0 auto 50px auto;
+}
