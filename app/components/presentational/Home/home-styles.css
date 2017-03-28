@@ -16,6 +16,10 @@
 	cursor: pointer;
 }
 
+.nav li:hover {
+	border-bottom: 1px solid black;
+}
+
 .nav a {
 	color: #000;
 	text-decoration: none;

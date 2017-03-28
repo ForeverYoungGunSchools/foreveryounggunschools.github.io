@@ -9,6 +9,7 @@ import App from './presentational/App/App';
 import Home from './presentational/Home/Home';
 import About from './presentational/About/About';
 import Classes from './presentational/Classes/Classes';
+import SignUp from './presentational/SignUp/SignUp';
 
 // React-Router Routes
 const routes = (
@@ -17,6 +18,7 @@ const routes = (
 			<IndexRoute component={Home} />
 			<Route path="/about" component={About} />
 			<Route path="/classes" component={Classes} />
+			<Route path="/signup" component={SignUp} />
 		</Route>
 	</Router>
 );

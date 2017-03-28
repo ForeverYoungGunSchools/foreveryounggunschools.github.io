@@ -2421,7 +2421,7 @@
 	          address = address.slice(0, index);
 	        }
 	      }
-	    } else if (index = parse.exec(address)) {
+	    } else if ((index = parse.exec(address))) {
 	      url[key] = index[1];
 	      address = address.slice(0, index.index);
 	    }
@@ -2499,7 +2499,7 @@
 	 * @returns {URL}
 	 * @api public
 	 */
-	URL.prototype.set = function set(part, value, fn) {
+	function set(part, value, fn) {
 	  var url = this;
 
 	  switch (part) {
@@ -2580,7 +2580,7 @@
 	 * @returns {String}
 	 * @api public
 	 */
-	URL.prototype.toString = function toString(stringify) {
+	function toString(stringify) {
 	  if (!stringify || 'function' !== typeof stringify) stringify = qs.stringify;
 
 	  var query
@@ -2605,7 +2605,9 @@
 	  if (url.hash) result += url.hash;
 
 	  return result;
-	};
+	}
+
+	URL.prototype = { set: set, toString: toString };
 
 	//
 	// Expose the URL parser and some additional properties that might be useful for
@@ -2943,14 +2945,17 @@
 	 */
 
 	function load() {
+	  var r;
 	  try {
-	    return exports.storage.debug;
+	    r = exports.storage.debug;
 	  } catch(e) {}
 
 	  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-	  if (typeof process !== 'undefined' && 'env' in process) {
-	    return process.env.DEBUG;
+	  if (!r && typeof process !== 'undefined' && 'env' in process) {
+	    r = process.env.DEBUG;
 	  }
+
+	  return r;
 	}
 
 	/**
@@ -2990,7 +2995,7 @@
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = createDebug.debug = createDebug.default = createDebug;
+	exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
 	exports.coerce = coerce;
 	exports.disable = disable;
 	exports.enable = enable;
@@ -3121,6 +3126,9 @@
 
 	function enable(namespaces) {
 	  exports.save(namespaces);
+
+	  exports.names = [];
+	  exports.skips = [];
 
 	  var split = (namespaces || '').split(/[\s,]+/);
 	  var len = split.length;
@@ -25898,10 +25906,10 @@
 	 */
 
 	function getUnboundedScrollPosition(scrollable) {
-	  if (scrollable === window) {
+	  if (scrollable.Window && scrollable instanceof scrollable.Window) {
 	    return {
-	      x: window.pageXOffset || document.documentElement.scrollLeft,
-	      y: window.pageYOffset || document.documentElement.scrollTop
+	      x: scrollable.pageXOffset || scrollable.document.documentElement.scrollLeft,
+	      y: scrollable.pageYOffset || scrollable.document.documentElement.scrollTop
 	    };
 	  }
 	  return {
@@ -26650,7 +26658,9 @@
 	 * @return {boolean} Whether or not the object is a DOM node.
 	 */
 	function isNode(object) {
-	  return !!(object && (typeof Node === 'function' ? object instanceof Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
+	  var doc = object ? object.ownerDocument || object : document;
+	  var defaultView = doc.defaultView || window;
+	  return !!(object && (typeof defaultView.Node === 'function' ? object instanceof defaultView.Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
 	}
 
 	module.exports = isNode;
@@ -26659,7 +26669,7 @@
 /* 227 */
 /***/ function(module, exports) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -26680,19 +26690,24 @@
 	 *
 	 * The activeElement will be null only if the document or document body is not
 	 * yet defined.
+	 *
+	 * @param {?DOMDocument} doc Defaults to current document.
+	 * @return {?DOMElement}
 	 */
-	function getActiveElement() /*?DOMElement*/{
-	  if (typeof document === 'undefined') {
+	function getActiveElement(doc) /*?DOMElement*/{
+	  doc = doc || global.document;
+	  if (typeof doc === 'undefined') {
 	    return null;
 	  }
 	  try {
-	    return document.activeElement || document.body;
+	    return doc.activeElement || doc.body;
 	  } catch (e) {
-	    return document.body;
+	    return doc.body;
 	  }
 	}
 
 	module.exports = getActiveElement;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 /* 228 */
@@ -29133,12 +29148,13 @@
 
 	var _Classes2 = _interopRequireDefault(_Classes);
 
+	var _SignUp = __webpack_require__(327);
+
+	var _SignUp2 = _interopRequireDefault(_SignUp);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// React-Router Routes
-
-
-	// My dependencies
 	var routes = _react2.default.createElement(
 		_reactRouter.Router,
 		{ history: _reactRouter.browserHistory },
@@ -29147,11 +29163,15 @@
 			{ path: '/', component: _App2.default },
 			_react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default }),
-			_react2.default.createElement(_reactRouter.Route, { path: '/classes', component: _Classes2.default })
+			_react2.default.createElement(_reactRouter.Route, { path: '/classes', component: _Classes2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _SignUp2.default })
 		)
 	);
 
 	// Export routes
+
+
+	// My dependencies
 	exports.default = routes;
 
 /***/ },
@@ -32297,11 +32317,11 @@
 	 */
 	var useQueries = function useQueries(createHistory) {
 	  return function () {
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	    var history = createHistory(options);
-	    var stringifyQuery = options.stringifyQuery;
-	    var parseQueryString = options.parseQueryString;
+	    var stringifyQuery = options.stringifyQuery,
+	        parseQueryString = options.parseQueryString;
 
 
 	    if (typeof stringifyQuery !== 'function') stringifyQuery = defaultStringifyQuery;
@@ -32441,9 +32461,9 @@
 		switch (opts.arrayFormat) {
 			case 'index':
 				return function (key, value, accumulator) {
-					result = /\[(\d*)]$/.exec(key);
+					result = /\[(\d*)\]$/.exec(key);
 
-					key = key.replace(/\[\d*]$/, '');
+					key = key.replace(/\[\d*\]$/, '');
 
 					if (!result) {
 						accumulator[key] = value;
@@ -32459,9 +32479,9 @@
 
 			case 'bracket':
 				return function (key, value, accumulator) {
-					result = /(\[])$/.exec(key);
+					result = /(\[\])$/.exec(key);
 
-					key = key.replace(/\[]$/, '');
+					key = key.replace(/\[\]$/, '');
 
 					if (!result || accumulator[key] === undefined) {
 						accumulator[key] = value;
@@ -32648,7 +32668,7 @@
 	exports.__esModule = true;
 	exports.locationsAreEqual = exports.statesAreEqual = exports.createLocation = exports.createQuery = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -32671,9 +32691,9 @@
 	};
 
 	var createLocation = exports.createLocation = function createLocation() {
-	  var input = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-	  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
-	  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+	  var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/';
+	  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Actions.POP;
+	  var key = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
 	  var object = typeof input === 'string' ? (0, _PathUtils.parsePath)(input) : input;
 
@@ -32753,12 +32773,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var addQueryStringValueToPath = exports.addQueryStringValueToPath = function addQueryStringValueToPath(path, key, value) {
-	  var _parsePath = parsePath(path);
-
-	  var pathname = _parsePath.pathname;
-	  var search = _parsePath.search;
-	  var hash = _parsePath.hash;
-
+	  var _parsePath = parsePath(path),
+	      pathname = _parsePath.pathname,
+	      search = _parsePath.search,
+	      hash = _parsePath.hash;
 
 	  return createPath({
 	    pathname: pathname,
@@ -32768,12 +32786,10 @@
 	};
 
 	var stripQueryStringValueFromPath = exports.stripQueryStringValueFromPath = function stripQueryStringValueFromPath(path, key) {
-	  var _parsePath2 = parsePath(path);
-
-	  var pathname = _parsePath2.pathname;
-	  var search = _parsePath2.search;
-	  var hash = _parsePath2.hash;
-
+	  var _parsePath2 = parsePath(path),
+	      pathname = _parsePath2.pathname,
+	      search = _parsePath2.search,
+	      hash = _parsePath2.hash;
 
 	  return createPath({
 	    pathname: pathname,
@@ -32785,9 +32801,8 @@
 	};
 
 	var getQueryStringValueFromPath = exports.getQueryStringValueFromPath = function getQueryStringValueFromPath(path, key) {
-	  var _parsePath3 = parsePath(path);
-
-	  var search = _parsePath3.search;
+	  var _parsePath3 = parsePath(path),
+	      search = _parsePath3.search;
 
 	  var match = search.match(new RegExp('[?&]' + key + '=([a-zA-Z0-9]+)'));
 	  return match && match[1];
@@ -32829,10 +32844,10 @@
 	var createPath = exports.createPath = function createPath(location) {
 	  if (location == null || typeof location === 'string') return location;
 
-	  var basename = location.basename;
-	  var pathname = location.pathname;
-	  var search = location.search;
-	  var hash = location.hash;
+	  var basename = location.basename,
+	      pathname = location.pathname,
+	      search = location.search,
+	      hash = location.hash;
 
 	  var path = (basename || '') + pathname;
 
@@ -32864,7 +32879,7 @@
 
 	var useBasename = function useBasename(createHistory) {
 	  return function () {
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	    var history = createHistory(options);
 	    var basename = options.basename;
@@ -32874,7 +32889,7 @@
 	      if (!location) return location;
 
 	      if (basename && location.basename == null) {
-	        if (location.pathname.indexOf(basename) === 0) {
+	        if (location.pathname.toLowerCase().indexOf(basename.toLowerCase()) === 0) {
 	          location.pathname = location.pathname.substring(basename.length);
 	          location.basename = basename;
 
@@ -32998,7 +33013,7 @@
 	};
 
 	var createMemoryHistory = function createMemoryHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	  if (Array.isArray(options)) {
 	    options = { entries: options };
@@ -33065,9 +33080,9 @@
 	    go: go
 	  }));
 
-	  var _options = options;
-	  var entries = _options.entries;
-	  var current = _options.current;
+	  var _options = options,
+	      entries = _options.entries,
+	      current = _options.current;
 
 
 	  if (typeof entries === 'string') {
@@ -33127,13 +33142,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var createHistory = function createHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var getCurrentLocation = options.getCurrentLocation;
-	  var getUserConfirmation = options.getUserConfirmation;
-	  var pushLocation = options.pushLocation;
-	  var replaceLocation = options.replaceLocation;
-	  var go = options.go;
-	  var keyLength = options.keyLength;
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var getCurrentLocation = options.getCurrentLocation,
+	      getUserConfirmation = options.getUserConfirmation,
+	      pushLocation = options.pushLocation,
+	      replaceLocation = options.replaceLocation,
+	      go = options.go,
+	      keyLength = options.keyLength;
 
 
 	  var currentLocation = void 0;
@@ -33262,7 +33277,7 @@
 	  };
 
 	  var createLocation = function createLocation(location, action) {
-	    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
+	    var key = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : createKey();
 	    return (0, _LocationUtils.createLocation)(location, action, key);
 	  };
 
@@ -33502,18 +33517,18 @@
 	 * behavior using { forceRefresh: true } in options.
 	 */
 	var createBrowserHistory = function createBrowserHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Browser history needs a DOM') : (0, _invariant2.default)(false) : void 0;
 
 	  var useRefresh = options.forceRefresh || !(0, _DOMUtils.supportsHistory)();
 	  var Protocol = useRefresh ? RefreshProtocol : BrowserProtocol;
 
-	  var getUserConfirmation = Protocol.getUserConfirmation;
-	  var getCurrentLocation = Protocol.getCurrentLocation;
-	  var pushLocation = Protocol.pushLocation;
-	  var replaceLocation = Protocol.replaceLocation;
-	  var go = Protocol.go;
+	  var getUserConfirmation = Protocol.getUserConfirmation,
+	      getCurrentLocation = Protocol.getCurrentLocation,
+	      pushLocation = Protocol.pushLocation,
+	      replaceLocation = Protocol.replaceLocation,
+	      go = Protocol.go;
 
 
 	  var history = (0, _createHistory2.default)(_extends({
@@ -33619,8 +33634,9 @@
 
 	var startListener = exports.startListener = function startListener(listener) {
 	  var handlePopState = function handlePopState(event) {
-	    if (event.state !== undefined) // Ignore extraneous popstate events in WebKit
-	      listener(_createLocation(event.state));
+	    if ((0, _DOMUtils.isExtraneousPopstateEvent)(event)) // Ignore extraneous popstate events in WebKit
+	      return;
+	    listener(_createLocation(event.state));
 	  };
 
 	  (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
@@ -33643,8 +33659,8 @@
 	};
 
 	var updateLocation = function updateLocation(location, updateState) {
-	  var state = location.state;
-	  var key = location.key;
+	  var state = location.state,
+	      key = location.key;
 
 
 	  if (state !== undefined) (0, _DOMStateStorage.saveState)(key, state);
@@ -33711,6 +33727,15 @@
 	 */
 	var supportsPopstateOnHashchange = exports.supportsPopstateOnHashchange = function supportsPopstateOnHashchange() {
 	  return window.navigator.userAgent.indexOf('Trident') === -1;
+	};
+
+	/**
+	 * Returns true if a given popstate event is an extraneous WebKit event.
+	 * Accounts for the fact that Chrome on iOS fires real popstate events
+	 * containing undefined state when pressing the back button.
+	 */
+	var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
+	  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
 	};
 
 /***/ },
@@ -33953,12 +33978,12 @@
 	};
 
 	var createHashHistory = function createHashHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
 
-	  var queryKey = options.queryKey;
-	  var hashType = options.hashType;
+	  var queryKey = options.queryKey,
+	      hashType = options.hashType;
 
 
 	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(queryKey !== false, 'Using { queryKey: false } no longer works. Instead, just don\'t ' + 'use location state if you don\'t want a key in your URL query string') : void 0;
@@ -34153,8 +34178,8 @@
 	};
 
 	var updateLocation = function updateLocation(location, pathCoder, queryKey, updateHash) {
-	  var state = location.state;
-	  var key = location.key;
+	  var state = location.state,
+	      key = location.key;
 
 
 	  var path = pathCoder.encodePath((0, _PathUtils.createPath)(location));
@@ -34237,8 +34262,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./app-styles.css", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./app-styles.css");
+			module.hot.accept("!!../../../../node_modules/css-loader/index.js!./app-styles.css", function() {
+				var newContent = require("!!../../../../node_modules/css-loader/index.js!./app-styles.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -34340,7 +34365,7 @@
 			};
 		},
 		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+			return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
 		}),
 		getHeadElement = memoize(function () {
 			return document.head || document.getElementsByTagName("head")[0];
@@ -34636,6 +34661,15 @@
 							{ to: '/classes' },
 							'Classes'
 						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
+						)
 					)
 				)
 			),
@@ -34717,8 +34751,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./home-styles.css", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./home-styles.css");
+			module.hot.accept("!!../../../../node_modules/css-loader/index.js!./home-styles.css", function() {
+				var newContent = require("!!../../../../node_modules/css-loader/index.js!./home-styles.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -34736,7 +34770,7 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(318) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 2vw;\n\twidth: 50vw;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 1.5vw;\n}\n\n.title {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin-bottom: 50px;\n}\n\n.title h1 {\n\tfont-size: 5vw;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 2.5vw;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 2.3vw;\n}\n\n.home-info h5 {\n\tfont-size: 2vw;\n}\n\n.home-info h6 {\n\tfont-size: 1.8vw;\n}", ""]);
+	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav li:hover {\n\tborder-bottom: 1px solid black;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(318) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 2vw;\n\twidth: 50vw;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 1.5vw;\n}\n\n.title {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin-bottom: 50px;\n}\n\n.title h1 {\n\tfont-size: 5vw;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 2.5vw;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 2.3vw;\n}\n\n.home-info h5 {\n\tfont-size: 2vw;\n}\n\n.home-info h6 {\n\tfont-size: 1.8vw;\n}", ""]);
 
 	// exports
 
@@ -34807,6 +34841,15 @@
 							_reactRouter.Link,
 							{ to: '/classes' },
 							'Classes'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
 						)
 					)
 				)
@@ -34885,8 +34928,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./about-styles.css", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./about-styles.css");
+			module.hot.accept("!!../../../../node_modules/css-loader/index.js!./about-styles.css", function() {
+				var newContent = require("!!../../../../node_modules/css-loader/index.js!./about-styles.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -34981,6 +35024,15 @@
 							_reactRouter.Link,
 							{ to: '/classes' },
 							'Classes'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
 						)
 					)
 				)
@@ -35149,8 +35201,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./classes-styles.css", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./classes-styles.css");
+			module.hot.accept("!!../../../../node_modules/css-loader/index.js!./classes-styles.css", function() {
+				var newContent = require("!!../../../../node_modules/css-loader/index.js!./classes-styles.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -35172,6 +35224,160 @@
 
 	// exports
 
+
+/***/ },
+/* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// 3rd party imports
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(77);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(254);
+
+	__webpack_require__(328);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Create SignUp component
+	function SignUp(props) {
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement('div', { className: 'main-container' }),
+			_react2.default.createElement('div', { className: 'white-container' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'nav' },
+				_react2.default.createElement(
+					'ul',
+					null,
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/about' },
+							'About Me'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/classes' },
+							'Classes'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
+						)
+					)
+				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'signup' },
+				_react2.default.createElement(
+					'p',
+					null,
+					'View and sign up for upcoming classes ',
+					_react2.default.createElement(
+						'a',
+						{ href: 'https://www.eventbrite.com/e/utah-concealed-firearm-permit-class-tickets-33133704803' },
+						'here'
+					),
+					'.'
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					'For a custom class with your friends, text me for details.'
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					'I am now a partner with Mountain West Fireamrms. If you are looking to purchase a gun anytime soon, please contact me for a great price.'
+				),
+				_react2.default.createElement('div', { className: 'family-pic' })
+			)
+		);
+	}
+
+	// Export SignUp component
+
+
+	// My imports
+	exports.default = SignUp;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(329);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(314)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../../node_modules/css-loader/index.js!./signUp.css", function() {
+				var newContent = require("!!../../../../node_modules/css-loader/index.js!./signUp.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 329 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(312)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".signup {\n\twidth: 70vw;\n\tmargin: 0 auto;\n}\n\n.signup p {\n\ttext-align: center;\n\tfont-size: 1.8vw;\n\twidth: 80%;\n\tmargin: 40px auto 0 auto;\n\tline-height: 1.5;\n}\n\n.family-pic {\n\tbackground: url(" + __webpack_require__(330) + ");\n\tbackground-size: cover;\n\theight: 25vw;\n\twidth: 31vw;\n\tmargin: 30px auto;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 330 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "7bfd9256147c3b7f589b42e3ace7d70b.png";
 
 /***/ }
 /******/ ]);
