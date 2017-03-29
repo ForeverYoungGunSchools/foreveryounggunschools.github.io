@@ -54,3 +54,13 @@ table {
   position: fixed;
   z-index: -1;
 }
+
+@media(max-width: 900px) {
+  .white-container {
+    width: 90vw;
+    margin-left: 5%;
+  }
+}
+
+
+

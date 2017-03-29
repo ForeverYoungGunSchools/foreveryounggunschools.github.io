@@ -2,7 +2,6 @@
 	width: 100vw;
 	text-align: center;
 	font-family: sans-serif;
-	font-size: 1.3vw;
 }
 
 .nav ul {
@@ -23,6 +22,7 @@
 .nav a {
 	color: #000;
 	text-decoration: none;
+	font-size: 18px;
 }
 
 .headline {
@@ -36,34 +36,36 @@
 	background-size: cover;
 	height: 12vw;
 	width: 13.8vw;
+	min-width: 138px;
+	min-height: 120px;
 }
 
 .quote {
 	display: inline-block;
 	position: absolute;
-	margin-top: 2vw;
-	width: 50vw;
+	margin-top: 20px;
+	width: 50%;
 	text-align: center;
 	padding: 25px;
 	font-family: sans-serif;
 	font-style: italic;
-	font-size: 1.5vw;
+	font-size: 20px;
 }
 
 .title {
-	width: 100%;
+	width: 90%;
 	text-align: center;
 	font-family: sans-serif;
-	margin-bottom: 50px;
+	margin: 0 auto 50px auto;
 }
 
 .title h1 {
-	font-size: 5vw;
+	font-size: 48px;
 	margin-bottom: 20px;
 }
 
 .title h3 {
-	font-size: 2.5vw;
+	font-size: 36px;
 }
 
 .home-info {
@@ -75,13 +77,45 @@
 }
 
 .home-info h4 {
-	font-size: 2.3vw;
+	font-size: 30px;
 }
 
 .home-info h5 {
-	font-size: 2vw;
+	font-size: 24px;
 }
 
 .home-info h6 {
-	font-size: 1.8vw;
+	font-size: 20px;
 }
+
+@media(max-width: 700px) {
+	.quote {
+		padding: 0 25px;
+		margin-top: 10px;
+	}
+
+	.nav a {
+		font-size: 14px;
+	}
+
+	.title h1 {
+		font-size: 30px;
+	}
+
+	.title h3 {
+		font-size: 20px;
+	}
+
+	.home-info h4 {
+		font-size: 18px;
+	}
+
+	.home-info h5 {
+		font-size: 16px;
+	}
+
+	.home-info h6 {
+		font-size: 14px;
+	}
+}
+

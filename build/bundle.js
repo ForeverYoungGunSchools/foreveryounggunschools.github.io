@@ -34281,7 +34281,7 @@
 
 
 	// module
-	exports.push([module.id, "/*****  Reset Browser Default Settings  *****/\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n  box-sizing: border-box;\n}\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after, q:before, q:after {\n  content: '';\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n.main-container {\n  background: url(" + __webpack_require__(313) + ");\n  width: 100vw;\n  height: 100vh;\n  background-size: 100vw 100vh;\n  background-repeat: no-repeat;\n  position: fixed;\n  z-index: -2;\n}\n\n.white-container {\n  background-color: white;\n  width: 70%;\n  min-height: 100vh;\n  height: 100%;\n  margin-left: 15%;\n  position: fixed;\n  z-index: -1;\n}", ""]);
+	exports.push([module.id, "/*****  Reset Browser Default Settings  *****/\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n  box-sizing: border-box;\n}\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after, q:before, q:after {\n  content: '';\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n.main-container {\n  background: url(" + __webpack_require__(313) + ");\n  width: 100vw;\n  height: 100vh;\n  background-size: 100vw 100vh;\n  background-repeat: no-repeat;\n  position: fixed;\n  z-index: -2;\n}\n\n.white-container {\n  background-color: white;\n  width: 70%;\n  min-height: 100vh;\n  height: 100%;\n  margin-left: 15%;\n  position: fixed;\n  z-index: -1;\n}\n\n@media(max-width: 900px) {\n  .white-container {\n    width: 90vw;\n    margin-left: 5%;\n  }\n}\n\n\n\n", ""]);
 
 	// exports
 
@@ -34770,7 +34770,7 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav li:hover {\n\tborder-bottom: 1px solid black;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(318) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 2vw;\n\twidth: 50vw;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 1.5vw;\n}\n\n.title {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin-bottom: 50px;\n}\n\n.title h1 {\n\tfont-size: 5vw;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 2.5vw;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 2.3vw;\n}\n\n.home-info h5 {\n\tfont-size: 2vw;\n}\n\n.home-info h6 {\n\tfont-size: 1.8vw;\n}", ""]);
+	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav li:hover {\n\tborder-bottom: 1px solid black;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n\tfont-size: 18px;\n}\n\n.headline {\n\twidth: 64%;\n\tmargin: 30px auto;\n}\n\n.family-bg {\n\tdisplay: inline-block;\n\tbackground: url(" + __webpack_require__(318) + ");\n\tbackground-size: cover;\n\theight: 12vw;\n\twidth: 13.8vw;\n\tmin-width: 138px;\n\tmin-height: 120px;\n}\n\n.quote {\n\tdisplay: inline-block;\n\tposition: absolute;\n\tmargin-top: 20px;\n\twidth: 50%;\n\ttext-align: center;\n\tpadding: 25px;\n\tfont-family: sans-serif;\n\tfont-style: italic;\n\tfont-size: 20px;\n}\n\n.title {\n\twidth: 90%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tmargin: 0 auto 50px auto;\n}\n\n.title h1 {\n\tfont-size: 48px;\n\tmargin-bottom: 20px;\n}\n\n.title h3 {\n\tfont-size: 36px;\n}\n\n.home-info {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tline-height: 1.2;\n\tmargin-bottom: 50px;\n}\n\n.home-info h4 {\n\tfont-size: 30px;\n}\n\n.home-info h5 {\n\tfont-size: 24px;\n}\n\n.home-info h6 {\n\tfont-size: 20px;\n}\n\n@media(max-width: 700px) {\n\t.quote {\n\t\tpadding: 0 25px;\n\t\tmargin-top: 10px;\n\t}\n\n\t.nav a {\n\t\tfont-size: 14px;\n\t}\n\n\t.title h1 {\n\t\tfont-size: 30px;\n\t}\n\n\t.title h3 {\n\t\tfont-size: 20px;\n\t}\n\n\t.home-info h4 {\n\t\tfont-size: 18px;\n\t}\n\n\t.home-info h5 {\n\t\tfont-size: 16px;\n\t}\n\n\t.home-info h6 {\n\t\tfont-size: 14px;\n\t}\n}\n\n", ""]);
 
 	// exports
 
@@ -34947,7 +34947,7 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.women, .me {\n\twidth: 64%;\n\tmargin: 30px auto 50px auto;\n}\n\n.my-pic {\n\tbackground: url(" + __webpack_require__(322) + ");\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\theight: 17vw;\n\twidth: 23vw;\n\tmargin: 20px auto;\n}\n\n.woman-pic {\n\tbackground: url(" + __webpack_require__(323) + ");\n\tbackground-size: cover;\n\theight: 20vw;\n\twidth: 10vw;\n\tfloat: left;\n\tmargin-right: 30px;\n}\n\n.women p, .men p, .me p {\n\tfont-size: 1.8vw;\n\tline-height: 1.2;\n\tmargin-bottom: 10px;\n}\n\n.men {\n\twidth: 64%;\n\tmargin: 0 auto 50px auto;\n}", ""]);
+	exports.push([module.id, ".women, .me {\n\twidth: 64%;\n\tmargin: 30px auto 50px auto;\n}\n\n.my-pic {\n\tbackground: url(" + __webpack_require__(322) + ");\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\theight: 17vw;\n\twidth: 23vw;\n\tmargin: 20px auto;\n\tmin-height: 170px;\n\tmin-width: 230px;\n}\n\n.woman-pic {\n\tbackground: url(" + __webpack_require__(323) + ");\n\tbackground-size: cover;\n\theight: 20vw;\n\twidth: 10vw;\n\tmin-height: 150px;\n\tmin-width: 75px;\n\tfloat: left;\n\tmargin-right: 30px;\n}\n\n.women p, .men p, .me p {\n\tfont-size: 18px;\n\tline-height: 1.2;\n\tmargin-bottom: 10px;\n}\n\n.men {\n\twidth: 64%;\n\tmargin: 0 auto 50px auto;\n}", ""]);
 
 	// exports
 
@@ -35220,7 +35220,7 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n\twidth: 100vw;\n\ttext-align: center;\n\tfont-family: sans-serif;\n\tfont-size: 1.3vw;\n}\n\n.nav ul {\n\tdisplay: inline-flex;\n\tmargin: 30px 0 20px 0;\n\tjustify-content: space-around;\n\twidth: 64%;\n}\n\n.nav li {\n\tcursor: pointer;\n}\n\n.nav a {\n\tcolor: #000;\n\ttext-decoration: none;\n}\n\n.classes {\n\twidth: 64%;\n\tmargin: 30px auto;\n\tfont-size: 1.8vw;\n\tline-height: 1.2;\n}\n\n.classes div {\n\twidth: 100%;\n}\n\n.single-indent {\n\tmargin-left: 3vw;\n}\n\n.double-indent {\n\tmargin-left: 6vw;\n}\n\n.right {\n\tfloat: right;\n\tmargin-right: 3vw;\n}\n\n.class-info, .margin {\n\tmargin-top: 30px;\n}", ""]);
+	exports.push([module.id, ".classes {\n\twidth: 64%;\n\tmargin: 30px auto;\n\tfont-size: 18px;\n\tline-height: 1.2;\n}\n\n.classes div {\n\twidth: 100%;\n}\n\n.single-indent {\n\tmargin-left: 3vw;\n}\n\n.double-indent {\n\tmargin-left: 6vw;\n}\n\n.right {\n\tfloat: right;\n\tmargin-right: 3vw;\n}\n\n.class-info, .margin {\n\tmargin-top: 30px;\n}", ""]);
 
 	// exports
 
@@ -35320,7 +35320,7 @@
 				_react2.default.createElement(
 					'p',
 					null,
-					'I am now a partner with Mountain West Fireamrms. If you are looking to purchase a gun anytime soon, please contact me for a great price.'
+					'I am now a partner with Mountain West Firearms. If you are looking to purchase a gun anytime soon, please contact me for a great price.'
 				),
 				_react2.default.createElement('div', { className: 'family-pic' })
 			)
@@ -35368,7 +35368,7 @@
 
 
 	// module
-	exports.push([module.id, ".signup {\n\twidth: 70vw;\n\tmargin: 0 auto;\n}\n\n.signup p {\n\ttext-align: center;\n\tfont-size: 1.8vw;\n\twidth: 80%;\n\tmargin: 40px auto 0 auto;\n\tline-height: 1.5;\n}\n\n.family-pic {\n\tbackground: url(" + __webpack_require__(330) + ");\n\tbackground-size: cover;\n\theight: 25vw;\n\twidth: 31vw;\n\tmargin: 30px auto;\n}", ""]);
+	exports.push([module.id, ".signup {\n\twidth: 70vw;\n\tmargin: 0 auto;\n}\n\n.signup p {\n\ttext-align: center;\n\tfont-size: 18px;\n\twidth: 80%;\n\tmargin: 40px auto 0 auto;\n\tline-height: 1.5;\n}\n\n.family-pic {\n\tbackground: url(" + __webpack_require__(330) + ");\n\tbackground-size: cover;\n\theight: 25vw;\n\twidth: 31vw;\n\tmin-height: 200px;\n\tmin-width: 260px;\n\tmargin: 30px auto;\n}", ""]);
 
 	// exports
 

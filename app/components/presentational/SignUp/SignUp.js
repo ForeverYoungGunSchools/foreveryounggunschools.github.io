@@ -25,7 +25,7 @@ function SignUp(props) {
 			<div className="signup">
 				<p>View and sign up for upcoming classes <a href="https://www.eventbrite.com/e/utah-concealed-firearm-permit-class-tickets-33133704803">here</a>.</p>
 				<p>For a custom class with your friends, text me for details.</p>
-				<p>I am now a partner with Mountain West Fireamrms. If you are looking to purchase a gun anytime soon, please contact me for a great price.</p>
+				<p>I am now a partner with Mountain West Firearms. If you are looking to purchase a gun anytime soon, please contact me for a great price.</p>
 				<div className="family-pic"></div>
 			</div>
 		</div>
