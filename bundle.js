@@ -35307,7 +35307,7 @@
 					'View and sign up for upcoming classes ',
 					_react2.default.createElement(
 						'a',
-						{ href: 'https://www.eventbrite.com/e/utah-concealed-firearm-permit-class-tickets-33133704803' },
+						{ href: 'https://www.eventbrite.com/o/harold-young-13288776814' },
 						'here'
 					),
 					'.'
